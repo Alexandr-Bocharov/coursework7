@@ -8,6 +8,7 @@ from habits.views import (
     PublicNiceHabitListAPIView,
     HabitUpdateAPIView,
     HabitDestroyAPIView,
+    HabitRetrieveAPIView,
 )
 
 app_name = HabitsConfig.name
@@ -19,5 +20,6 @@ urlpatterns = [
     path("public_useful_list/", PublicUsefulHabitListAPIView.as_view(), name="public-useful-list"),
     path("public_nice_list/", PublicNiceHabitListAPIView.as_view(), name="public-nice-list"),
     path("<int:pk>/update/", HabitUpdateAPIView.as_view(), name="update"),
-    path("<int:pk>/delete/", HabitDestroyAPIView.as_view(), name="delete")
+    path("<int:pk>/delete/", HabitDestroyAPIView.as_view(), name="delete"),
+    path("<int:pk>/detail/", HabitRetrieveAPIView.as_view(), name='detail'),
 ]
