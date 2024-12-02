@@ -14,7 +14,7 @@ class Habit(models.Model):
         NO_PERIODICITY = "no_periodicity", "без периодичности"
 
     user = models.ForeignKey(
-        User, verbose_name="пользователь", on_delete=models.CASCADE
+        User, verbose_name="пользователь", on_delete=models.CASCADE, **NULLABLE
     )
     place = models.CharField(max_length=150, verbose_name="место", **NULLABLE)
     dt = models.DateTimeField(verbose_name="время", **NULLABLE)
@@ -29,11 +29,13 @@ class Habit(models.Model):
         max_length=20,
         verbose_name="периодичность",
         choices=Periodicity.choices,
-        default=Periodicity.DAILY
+        default=Periodicity.DAILY,
     )
     reward = models.CharField(max_length=100, verbose_name="Вознаграждение", **NULLABLE)
-    time_to_complete = models.TimeField(verbose_name='время на выполнение', **NULLABLE)
-    is_published = models.BooleanField(verbose_name='признак публичности', default=False)
+    time_to_complete = models.TimeField(verbose_name="время на выполнение", **NULLABLE)
+    is_published = models.BooleanField(
+        verbose_name="признак публичности", default=False
+    )
 
     def __str__(self):
         return self.action
