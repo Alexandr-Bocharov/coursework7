@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 import os
@@ -28,8 +29,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-
     "users",
+    "habits",
     "rest_framework_simplejwt",
 ]
 
@@ -81,7 +82,7 @@ DATABASES = {
         "NAME": "coursework7",
         "PORT": "5433",
         "PASSWORD": "2306",
-        "USER": os.getenv('USR'),
+        "USER": os.getenv("USR"),
     }
 }
 
@@ -125,3 +126,8 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=120),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
