@@ -37,7 +37,8 @@ class HabitRetrieveAPIView(generics.RetrieveAPIView):
 
 
 class UsefulHabitListAPIView(generics.ListAPIView):
-    """ Список полезных привычек, которые создал текущий пользователь """
+    """Список полезных привычек, которые создал текущий пользователь"""
+
     serializer_class = HabitSerializer
     pagination_class = CustomHabitPaginator
     permission_classes = [IsAuthenticated]
@@ -47,7 +48,8 @@ class UsefulHabitListAPIView(generics.ListAPIView):
 
 
 class NiceHabitListAPIView(generics.ListAPIView):
-    """ Список приятных привычек, которые создал текущий пользователь """
+    """Список приятных привычек, которые создал текущий пользователь"""
+
     serializer_class = HabitSerializer
     pagination_class = CustomHabitPaginator
     permission_classes = [IsAuthenticated]
@@ -57,7 +59,8 @@ class NiceHabitListAPIView(generics.ListAPIView):
 
 
 class PublicUsefulHabitListAPIView(generics.ListAPIView):
-    """ Список публичных полезных привычек """
+    """Список публичных полезных привычек"""
+
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated]
 
@@ -66,7 +69,8 @@ class PublicUsefulHabitListAPIView(generics.ListAPIView):
 
 
 class PublicNiceHabitListAPIView(generics.ListAPIView):
-    """ Список публичных приятных привычек """
+    """Список публичных приятных привычек"""
+
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated]
 
