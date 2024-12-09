@@ -16,7 +16,12 @@ class RelatedHabitSerializer(serializers.ModelSerializer):
 
 
 class HabitSerializer(serializers.ModelSerializer):
-    related_habit = RelatedHabitSerializer()
+    # related_habit = RelatedHabitSerializer(allow_null=True, required=False)
+    related_habit = serializers.PrimaryKeyRelatedField(
+        queryset=Habit.objects.all(),
+        allow_null=True,
+        required=False,
+    )
 
     class Meta:
         model = Habit

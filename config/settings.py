@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     "users",
     "habits",
     "rest_framework_simplejwt",
+
+    "django_celery_beat",
 ]
 
 MIDDLEWARE = [
@@ -79,10 +81,10 @@ REST_FRAMEWORK = {
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "coursework7",
-        "PORT": "5433",
-        "PASSWORD": "2306",
+        "ENGINE": os.getenv("ENGINE"),
+        "NAME": os.getenv("NAME"),
+        "PORT": os.getenv("PORT"),
+        "PASSWORD": os.getenv("PASSWORD"),
         "USER": os.getenv("USR"),
     }
 }
@@ -108,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "ru-ru"
+LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
 
@@ -132,3 +134,20 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=120),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
+
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+# CELERY_BEAT_SCHEDULE = {
+#     "send_tg_message": {
+#         "task": "habits.tasks.send_tg_message",
+#         "schedule": timedelta(seconds=10),
+#     },
+# }

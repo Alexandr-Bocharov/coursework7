@@ -11,13 +11,12 @@ class Habit(models.Model):
         HOURLY = "hourly", "ежечасно"
         DAILY = "daily", "ежедневно"
         WEEKLY = "weekly", "еженедельно"
-        NO_PERIODICITY = "no_periodicity", "без периодичности"
 
     user = models.ForeignKey(
         User, verbose_name="пользователь", on_delete=models.CASCADE, **NULLABLE
     )
     place = models.CharField(max_length=150, verbose_name="место", **NULLABLE)
-    dt = models.DateTimeField(verbose_name="время", **NULLABLE)
+    tm = models.TimeField(verbose_name="время", **NULLABLE)
     action = models.CharField(max_length=200, verbose_name="действие")
     is_nice_habit = models.BooleanField(
         verbose_name="признак приятной привычки", default=False

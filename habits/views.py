@@ -7,6 +7,8 @@ from habits.paginators import CustomHabitPaginator
 from habits.permissions import IsOwner
 from habits.serializers import HabitSerializer
 
+from habits.tasks import send_tg_message, send_tg_message_after_create
+
 
 class HabitCreateAPIView(generics.CreateAPIView):
     serializer_class = HabitSerializer
@@ -15,6 +17,7 @@ class HabitCreateAPIView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         habit = serializer.save(user=self.request.user)
+        send_tg_message_after_create.delay(habit.pk)
         habit.save()
 
 
