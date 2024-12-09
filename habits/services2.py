@@ -11,19 +11,19 @@ def schedule_habit_task(habit: Habit):
     """
     Создает или обновляет расписание задачи для привычки.
     """
-    tg_time = habit.tm
-
-    hours = tg_time.hour
-    minutes = tg_time.minute
-    seconds = tg_time.second
-    noww = now() + timedelta(hours=3)
-
-    target_time = noww.replace(hour=hours, minute=minutes, second=seconds, microsecond=0)
-    print(target_time)
-    if target_time < noww:
-        target_time += timedelta(days=1)
-    print(target_time)
-    print(type(target_time))
+    # tg_time = habit.tm
+    #
+    # hours = tg_time.hour
+    # minutes = tg_time.minute
+    # seconds = tg_time.second
+    # noww = now() + timedelta(hours=3)
+    #
+    # target_time = noww.replace(hour=hours, minute=minutes, second=seconds, microsecond=0)
+    # print(target_time)
+    # if target_time < noww:
+    #     target_time += timedelta(days=1)
+    # print(target_time)
+    # print(type(target_time))
     # Конвертируем периодичность привычки в интервал
     interval_mapping = {
         "minutely": {"every": 1, "period": IntervalSchedule.MINUTES},
@@ -44,7 +44,6 @@ def schedule_habit_task(habit: Habit):
         interval=schedule,
         # start_time=target_time,
         task="habits.tasks.send_tg_message",
-        args=json.dumps([habit.id])
+        args=json.dumps([habit.id]),
     )
     task.save()
-

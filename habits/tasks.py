@@ -57,4 +57,3 @@ def send_tg_message(habit_id):
         print(f"Отправлено сообщение для привычки: {habit.action}")
     except Exception as e:
         print(f"Произошла ошибка в send_tg_message: {e}")
-

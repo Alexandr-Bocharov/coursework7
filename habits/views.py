@@ -65,6 +65,7 @@ class PublicUsefulHabitListAPIView(generics.ListAPIView):
     """Список публичных полезных привычек"""
 
     serializer_class = HabitSerializer
+    pagination_class = CustomHabitPaginator
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -75,6 +76,7 @@ class PublicNiceHabitListAPIView(generics.ListAPIView):
     """Список публичных приятных привычек"""
 
     serializer_class = HabitSerializer
+    pagination_class = CustomHabitPaginator
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):

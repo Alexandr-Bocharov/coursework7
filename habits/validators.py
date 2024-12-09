@@ -63,7 +63,7 @@ class ValidateNiceHabit:
         if instance:
             is_nice_habit = instance.is_nice_habit
             if is_nice_habit:
-                cur_reward = data.get('reward')
+                cur_reward = data.get("reward")
                 cur_related_habit = data.get("related_habit")
                 if cur_reward or cur_related_habit:
                     raise serializers.ValidationError(message)

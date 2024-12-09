@@ -35,7 +35,7 @@ class HabitSerializer(serializers.ModelSerializer):
 
     def run_validators(self, value):
         for validator in self.validators:
-            if hasattr(validator, '__call__'):
+            if hasattr(validator, "__call__"):
                 validator(value, instance=self.instance)
 
 
