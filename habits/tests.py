@@ -22,7 +22,10 @@ class HabitTestCase(APITestCase):
             user=self.user, action="подтягивания", reward="сок", is_published=True
         )
         self.published_nice_habit = Habit.objects.create(
-            user=self.user, action="погладить cобаку", is_nice_habit=True, is_published=True
+            user=self.user,
+            action="погладить cобаку",
+            is_nice_habit=True,
+            is_published=True,
         )
         self.client.force_authenticate(user=self.user)
 
@@ -53,20 +56,14 @@ class HabitTestCase(APITestCase):
         response = self.client.get(url)
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(
-            data.get("results")[0].get("action"),
-            self.habit.action
-        )
+        self.assertEqual(data.get("results")[0].get("action"), self.habit.action)
 
     def test_habit_nice_list(self):
         url = reverse("habits:nice-list")
         response = self.client.get(url)
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(
-            data.get("results")[0].get("action"),
-            self.nice_habit.action
-        )
+        self.assertEqual(data.get("results")[0].get("action"), self.nice_habit.action)
 
     def test_public_habit_useful_list(self):
         url = reverse("habits:public-useful-list")
@@ -74,7 +71,5 @@ class HabitTestCase(APITestCase):
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(
-            data.get("results")[0].get("action"),
-            self.published_habit.action
+            data.get("results")[0].get("action"), self.published_habit.action
         )
-
